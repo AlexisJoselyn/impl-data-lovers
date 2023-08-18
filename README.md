@@ -11,7 +11,7 @@
 * [7. Hacker edition](#6-hacker-edition)
 * [8. Objetivos de aprendizaje](#8-objetivos-de-aprendizaje)
 * [9. Pistas, tips y lecturas complementarias](#9-pistas-tips-y-lecturas-complementarias)
-* [10. Consideraciones para pedir tu Project Feedback](#10-consideractiones-para-pedir-tu-project-feedback)
+* [10. Consideraciones para pedir tu Project Feedback](#10-consideraciones-para-pedir-tu-project-feedback)
 
 ***
 
@@ -121,12 +121,12 @@ Aquí definimos en más detalle las funcionalidades mínimas que debe tener:
   una propiedad adicional (por ejemplo, el índice de masa corporal de cada pokemon) o unas estadísticas de la data completa.
   (por ejemplo, peso promedio de todos los pokemones).
 - La aplicación debe permitir a la usuaria filtrar la data. Deberás usar un elemento [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) con un atributo _id_ de valor `select-filter` y un atributo _name_ con el nombre de la propiedad
-    por la que filtrará. (por ejemplo, si vas a filtrar por "type" seria `name="type"`). Los `<options>` de este `<select>` deberán tener _valor_ y _etiqueta_ el valor del filtro (por ejemplo, si vas a filtrar por "fire" seria `<option value="fire">fire</option>`). 
+    por la que filtrará. (por ejemplo, si vas a filtrar por "type" seria `name="type"`). Los `<option>` de este `<select>` deberán tener atributo _value_ el valor del filtro (por ejemplo, si vas a filtrar por "fire" seria `<option value="fire">Fire</option>`). 
 - La aplicación debe permitir a la usuaria ordenar la data. 
   * Tendrá al menos un control `<select>` para ordenar.
-  * Si usas solo un control `<select>`, debe tener un atributo _id_ con valor `select-sort` y un    atributo _name_ con el nombre de la propiedad por la que ordenará. (por ejemplo, si vas a ordenar por "num" seria `name="num"`). Este `<select>` tendrá 
-    dos [`<option>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) con _valor_ `asc` y `desc`, para ordenar ascendente y descendente la data respectivamente (por ejemplo, `<option value="asc">A - Z</option>`). 
-  * Una alternativa es ofrecer la usuaria un ordenamiento mas complejo. Podrías implementar ordenar por varios propiedades. En este caso sería un `<select>` con un atributo _id_ con valor `select-sort`, y que contiene hijos `<option>` con un `value` del nombre de la propiedad con cual vas a ordenar. (Por ejemplo, `<option value="name">Nombre</option>`).  También, necesitarás otro control (`<radio>`,`<select>`, etc.) para decir que el ordenamiento es ascendente o descendente. Este control secundaria tendrá un atributo _name_ con valor `sort-order`, y tiene values `asc` y `desc`.
+  * Si usas solo un control `<select>`, debe tener un atributo _id_ con valor `select-sort` y un atributo _name_ con el nombre de la propiedad por la que ordenará. (por ejemplo, si vas a ordenar por "num" seria `name="num"`). Este `<select>` tendrá 
+    dos [`<option>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) con atributo _value_ `asc` y `desc`, para ordenar ascendente y descendente la data respectivamente (por ejemplo, `<option value="asc">A - Z</option>`). 
+  * Una alternativa es ofrecer la usuaria un ordenamiento mas complejo. Podrías implementar ordenar por varios propiedades. En este caso sería un `<select>` con un atributo _id_ con valor `select-sort`, y que contiene hijos `<option>` con un `value` del nombre de la propiedad con cual vas a ordenar. (Por ejemplo, `<option value="name">Nombre</option>`).  También, necesitarás otro control (`<radio>`,`<select>`, etc.) para decir que el ordenamiento es ascendente o descendente. Este control secundaria tendrá un atributo _name_ con valor `sort-order`, y tiene _value_ `asc` y `desc`.
 - Las funcionalidades de ordenar debe operar sobre la data filtrada. Por ejemplo, si filtro los pokemones de tipo fuego y luego los ordeno por nombre ascendentemente, la aplicación deberá mantener el filtro aplicado y ordenar los pokemones de tipo fuego.
 - La aplicación debe permitir a la usuaria reiniciar la aplicación, limpiando filtros y ordenamiento, con un `<button>` con _id_ `button-reset`.
 - Las operaciones de filtrar, ordenar, limpiar, etc. no deben recargar la página, si no que deben agregar el contenido en una manera
@@ -156,7 +156,7 @@ La lógica del proyecto debe estar implementada completamente en JavaScript
 (ES6), HTML y CSS. En este proyecto NO está permitido usar librerías o
 frameworks, solo [vanilla JavaScript](https://medium.com/laboratoria-how-to/vanillajs-vs-jquery-31e623bbd46e),
 con la excepción de librerías para hacer gráficas (charts); ver
-[_Parte opcional_](#6-hacker-edition) más arriba.
+[parte opcional_Hacker edition](#7-hacker-edition).
 
 El _boilerplate_ contiene una estructura de archivos como punto de partida así
 como toda la configuración de dependencias:
@@ -302,7 +302,7 @@ Lo cual no excluye que puedas usar otras opciones, por ejemplo en el caso de los
 
 * **Uso de selectores de CSS**
 
-  - [ ] Uso de selector class para los items <li> (que se llama `card`)
+  - [ ] Uso de selector class para los items <li>
   - [ ] Uso de flexbox en sentido `row` y `column`
   - [ ] Uso de flexbox para el elemento que contiene los items
   - [ ] Uso de flexbox para el elemento que contiene los UI inputs
