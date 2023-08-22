@@ -1,3 +1,6 @@
+/* global describe, it, expect */
+/* eslint no-undef: "error" */
+/* eslint-env node */
 /**
  * @jest-environment jsdom
 */
@@ -24,7 +27,7 @@ const fakeData = [
     ],
   },
 ];
-document.querySelector('#root').innerHTML = renderView(fakeData);
+document.querySelector('#root').innerHTML = renderItems(fakeData);
 
 describe('Uso de HTML semántico', () => {
 
@@ -59,7 +62,6 @@ describe('Uso de HTML semántico', () => {
 
   describe('<select>', () => {
     const select = document.querySelectorAll('select');
-
     it('La aplicación usa un <select>', () => {
       expect(select).not.toBeNull();
     });

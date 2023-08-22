@@ -1,3 +1,6 @@
+/* global describe, it, expect */
+/* eslint no-undef: "error" */
+/* eslint-env node */
 /**
  * @jest-environment jsdom
 */
@@ -50,7 +53,7 @@ const fakeData = [
     ],
   },
 ];
-document.querySelector('#root').innerHTML = renderView(fakeData);
+document.querySelector('#root').innerHTML = renderItems(fakeData);
 
 describe('CSS', () => {
   const cardsLi = document.querySelectorAll('#root > ul > li');

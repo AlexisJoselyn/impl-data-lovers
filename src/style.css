@@ -1,0 +1,22 @@
+header {
+    color: rgb(33, 142, 185);
+}
+footer {
+    background-color: black;
+}
+select {
+    border-radius: 10px;
+}
+form {
+    display: flex;
+    flex-wrap: nowrap;
+}
+#root ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+li {
+    border: 1px solid black;
+}
