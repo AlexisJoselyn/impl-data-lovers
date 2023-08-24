@@ -1,6 +1,3 @@
-/* global describe, it, expect */
-/* eslint no-undef: "error" */
-/* eslint-env node */
 /**
  * @jest-environment jsdom
 */
@@ -62,27 +59,32 @@ describe('Uso de HTML semántico', () => {
 
   describe('<select>', () => {
     const select = document.querySelectorAll('select');
+
     it('La aplicación usa un <select>', () => {
-      expect(select).not.toBeNull();
+      expect(select.length).toBeGreaterThan(0);
     });
 
     it('<select> tiene atributo "name"', () => {
       Array.from(select).forEach((element) => {
-        expect(element.getAttribute('name')).not.toBeNull();
+        expect(element.getAttribute('name').length).toBeGreaterThan(0);
       })
+      expect(select.length).toBeGreaterThan(0);
     });
 
     it('<select> no tiene atributo "class"', () => {
       Array.from(select).forEach((element) => {
         expect(element.getAttribute('class')).toBeNull();
       })
+      expect(select.length).toBeGreaterThan(0);
     });
 
     it('<label> existe', () => {
+      const label = document.querySelectorAll('label');
       Array.from(select).forEach((element) => {
         const previousFor = element.previousElementSibling.getAttribute('for');
         expect(previousFor).toBe(element.id);
       })
+      expect(select.length && label.length).toBeGreaterThan(0)
     })
 
   });
