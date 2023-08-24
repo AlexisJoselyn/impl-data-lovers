@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /**
  * @jest-environment jsdom
 */
@@ -63,12 +64,26 @@ const fakeData = [
     ],
   },
 ];
-document.querySelector('#root').innerHTML = renderItems(fakeData);
+// document.querySelector('#root').innerHTML = renderItems(fakeData);
+// console.log(document.querySelector('#root').innerHTML, "inner ++++++++++++");
 
 describe('CSS', () => {
-  const elementsLi = document.querySelectorAll('#root > ul > li');
+
   describe('Uso de selectores de CSS', () => {
+
+    beforeEach(() => {
+      const items = renderItems(fakeData);
+      // function renderItems can return html string or an node element
+      if (typeof items === 'string') {
+        document.querySelector('#root').innerHTML = items;
+      } else if (items instanceof HTMLElement) {
+        document.querySelector('#root').appendChild(items);
+      }
+    });
+    
     it('elementos <li> tienen un class con CSS', () => {
+      const elementsLi = document.querySelectorAll('#root > ul > li');
+      expect(elementsLi.length).toBeGreaterThan(0);
       // all lis should have same classes since rendered dinamically
       // so not checking for common classes here
       elementsLi.forEach((li) => {
@@ -94,12 +109,22 @@ describe('CSS', () => {
   });
 
   describe('Uso de flexbox', () => {
+
+    beforeEach(() => {
+      const items = renderItems(fakeData);
+      if (typeof items === 'string') {
+        document.querySelector('#root').innerHTML = items;
+      } else if (items instanceof HTMLElement) {
+        document.querySelector('#root').appendChild(items);
+      }
+    });
+
     it('Uso de flexbox en el elemento de <ul>', () => {
-      const ul = document.querySelector('#root ul');
+      const ul = document.querySelector('#root > ul');
       const cssForTag = getCSSDeclarationsForRules(getRulesForSelector(ul.tagName.toLowerCase()));
       const cssForId = getCSSDeclarationsForRules(getRulesForSelector(`#${ul.id}`));
       const cssForClasses = getDeclarationsForElClasses(ul);
-      const cssDeclarations = [...cssForClasses, cssForId, cssForTag];
+      const cssDeclarations = [...cssForClasses, ...cssForId, ...cssForTag];
 
       // expect to have display: flex 
       expect(
@@ -153,6 +178,7 @@ describe('CSS', () => {
 
   describe('Modelo de caja (box model)', () => {  
     it('Se usan atributos de modelo de caja en clase CSS para <li>', () => {
+      const elementsLi = document.querySelectorAll('#root > ul > li');
       elementsLi.forEach((li) => {
         expect(
           getDeclarationsForElClasses(li).some((declaration) => {
@@ -164,4 +190,3 @@ describe('CSS', () => {
     });
   });
 });
-
