@@ -17,6 +17,6 @@ form {
     list-style: none;
 }
 
-li {
+li, .test {
     border: 1px solid black;
 }
