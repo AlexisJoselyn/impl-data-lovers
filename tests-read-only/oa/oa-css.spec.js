@@ -5,6 +5,8 @@
 import fs from 'fs';
 import css from 'css';
 import { renderItems } from '../../src/viewFunctions.js';
+import { data as fakeData } from '../../test/data.js';
+
 const html = fs.readFileSync('./src/index.html', 'utf-8');
 document.body.innerHTML = html;
 
@@ -16,6 +18,18 @@ const BOX_MODEL_ATTRIBUTES = ['width', 'height', 'margin', 'padding', 'border', 
 const FLEXBOX_DECLARATION = ['display', 'flex'];
 const FLEXBOX_ATTRIBUTES = ['flex-wrap', 'flex-direction', 'justify-content', 'align-items'];
 
+const renderDOM = (data) => {
+  const items = renderItems(data);
+  // function renderItems can return html string or an node element
+  if (typeof items === 'string') {
+    document.querySelector('#root').innerHTML = items;
+  } else if (items instanceof HTMLElement) {
+    document.querySelector('#root').appendChild(items);
+  } else {
+    throw new Error('Error: renderItems should return an HTML string or an HTMLElement');
+  }
+}
+      
 const getRulesForSelector = (selector) => {
   return rules.filter(
     (rule) =>
@@ -45,51 +59,23 @@ const getDeclarationsForElClasses = (el) => {
   }, []);
 }
 
-const fakeData = [
-  {
-    name: "charizard",
-    img: "https://www.serebii.net/pokemongo/pokemon/006.png",
-    num: '006',
-    type: [
-      "fire",
-      "flying"
-    ],
-  },
-  {
-    name: "charmeleon",
-    img: "https://www.serebii.net/pokemongo/pokemon/005.png",
-    num: '005',
-    type: [
-      "fire"
-    ],
-  },
-];
-// document.querySelector('#root').innerHTML = renderItems(fakeData);
-// console.log(document.querySelector('#root').innerHTML, "inner ++++++++++++");
-
 describe('CSS', () => {
 
   describe('Uso de selectores de CSS', () => {
 
     beforeEach(() => {
-      const items = renderItems(fakeData);
-      // function renderItems can return html string or an node element
-      if (typeof items === 'string') {
-        document.querySelector('#root').innerHTML = items;
-      } else if (items instanceof HTMLElement) {
-        document.querySelector('#root').appendChild(items);
-      }
+      renderDOM(fakeData);
     });
     
     it('elementos <li> tienen un class con CSS', () => {
       const elementsLi = document.querySelectorAll('#root > ul > li');
-      expect(elementsLi.length).toBeGreaterThan(0);
       // all lis should have same classes since rendered dinamically
       // so not checking for common classes here
       elementsLi.forEach((li) => {
         const liRulesAttributes = getDeclarationsForElClasses(li);
         expect(liRulesAttributes.length).toBeGreaterThan(0);
       });
+      expect.hasAssertions();
     });
 
     it('Se usan selectores CSS de tipo para <header>', () => {
@@ -111,12 +97,7 @@ describe('CSS', () => {
   describe('Uso de flexbox', () => {
 
     beforeEach(() => {
-      const items = renderItems(fakeData);
-      if (typeof items === 'string') {
-        document.querySelector('#root').innerHTML = items;
-      } else if (items instanceof HTMLElement) {
-        document.querySelector('#root').appendChild(items);
-      }
+      renderDOM(fakeData);
     });
 
     it('Uso de flexbox en el elemento de <ul>', () => {

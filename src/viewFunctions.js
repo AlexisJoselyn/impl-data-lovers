@@ -3,17 +3,17 @@ export const renderItems = (data) => {
   let template = '';
   data.forEach(element => {
     template += `
-    <li>
-      <dl itemscope itemtype="got">
+    <li class="test" itemscope itemtype="got">
+      <dl>
       <img src="${element.imageUrl}">
-      <dt>Name:</dt><dd itemprop="fullName">${element.fullName}</dd>
+      <dt>Name:</dt><span itemprop="firstName" style="display=none">${element.firstName}</span><dd itemprop="fullName">${element.fullName}</dd>
       <dt>House:</dt><dd itemprop="family">${element.family}</dd>
       <dt>Title:</dt><dd itemprop="title">${element.title}</dd>
       </dl>
     </li>
     `
   });
-  cardContainer.innerHTML = template
+  cardContainer.innerHTML = template;
   return cardContainer
 };
 

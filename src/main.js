@@ -7,9 +7,9 @@ const dataGOT = data.got
 console.log(dataGOT);
 
 const root = document.getElementById('root')
-const selectFilter = document.querySelector('#select-filter')
-const selectSort = document.querySelector('#select-sort')
-const buttonFact = document.getElementById('button-fact')
+const selectFilter = document.querySelector('#filter')
+const selectSort = document.querySelector('#sort')
+const buttonFact = document.querySelector('#button-fact')
 const buttonReset = document.getElementById('button-reset')
 
 // eslint-disable-next-line no-undef

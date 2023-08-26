@@ -12,16 +12,16 @@
     <main>
       <h2>Winter is coming...</h2>
       <form action="">
-        <label for="select-filter">Filter house</label>
-        <select name="family" id="select-filter"></select>
-        <label for="select-sort">Sort</label>
-        <select name="first-name" id="select-sort">
+        <label for="filter">Filter house</label>
+        <select name="family" id="filter" data-testid="select-filter"></select>
+        <label for="sort">Sort</label>
+        <select name="firstName" id="sort" data-testid="select-sort">
           <option value=""></option>
           <option value="asc">A - Z</option>
           <option value="desc">Z - A</option>
         </select>
         <button id="button-fact">Fun Fact</button>
-        <button id="button-reset">Reset</button>
+        <button id="button-reset" data-testid="button-clear">Reset</button>
       </form>
       <section id="root"></section>
     </main>

@@ -104,8 +104,8 @@ describe('Uso de selectores del DOM', () => {
     expect(querySelectorCalls.length).toBeGreaterThan(0);
   });
 
-  it('Se usa el selector del DOM getElementById', () => {
-    expect(getElementByIdCalls.length).toBeGreaterThan(0);
+  it('Se prefiere el uso de querySelector sobre getElementById', () => {
+    expect(getElementByIdCalls.length < querySelectorCalls.length).toBe(true);
   });
 
 });
@@ -128,11 +128,13 @@ describe('Manejo de eventos del DOM', () => {
     expect(
       addEventListenerCalls.some((node) => {
         if (node.arguments[1].params.length === 0) return false;
+        // que existe un param tipo { target } { currentTarget }
         const hasTargetParam = node.arguments[1].params[0].type === 'ObjectPattern' && (
           node.arguments[1].params[0].properties[0].key.name === ('target') ||
           node.arguments[1].params[0].properties[0].key.name === ('currentTarget'));
-        const hasEventParam = node.arguments[1].params[0].name === ('e') || node.arguments[1].params[0].name === ('event');
-        return hasEventParam || hasTargetParam;
+        // que existe un param tipo e, event
+        const hasNamedEventParam = !!(node.arguments[1].params[0].name);
+        return hasNamedEventParam || hasTargetParam;
       })
     ).toBeTruthy();
   });
